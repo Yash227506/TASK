@@ -12,6 +12,9 @@ router = APIRouter(prefix="/tasks", tags=["tasks"])
 def list_tasks(db: Session = Depends(get_db)) -> list[TaskRead]:
     return get_tasks(db)
 
+@router.get("/ho", response_model=list[TaskRead])
+def list_tasks(db: Session = Depends(get_db)) -> list[TaskRead]:
+    return get_tasks(db)
 
 @router.post("", response_model=TaskRead, status_code=status.HTTP_201_CREATED)
 def add_task(task_in: TaskCreate, db: Session = Depends(get_db)) -> TaskRead:
